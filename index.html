@@ -3,11 +3,583 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>M-Tokens</title>
+  <meta name="description" content="M-Tokens: a testable Tradable Fuel Permit architecture for light-fleet mobility.">
+  <title>M-Tokens | Tradable Fuel Permits for Clean Mobility</title>
+
+  <style>
+    :root {
+      --navy: #102a43;
+      --navy-dark: #081c2c;
+      --green: #2f855a;
+      --green-light: #e8f5ee;
+      --blue-light: #edf4f8;
+      --text: #243b53;
+      --muted: #627d98;
+      --white: #ffffff;
+      --border: #d9e2ec;
+      --background: #f8fafc;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: var(--white);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1100px, 90%);
+      margin: 0 auto;
+    }
+
+    header {
+      background: var(--navy-dark);
+      color: var(--white);
+      padding: 18px 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .brand {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy-dark), var(--navy));
+      color: var(--white);
+      padding: 80px 0 85px;
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .eyebrow {
+      color: #9ae6b4;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-weight: 700;
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.6rem);
+      line-height: 1.05;
+      margin: 0 0 22px;
+      max-width: 900px;
+    }
+
+    .hero-lead {
+      font-size: clamp(1.2rem, 2.3vw, 1.65rem);
+      max-width: 780px;
+      margin-bottom: 28px;
+      color: #e6eef5;
+    }
+
+    .hero-summary {
+      max-width: 760px;
+      font-size: 1.08rem;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 12px 19px;
+      background: var(--green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 700;
+    }
+
+    section {
+      padding: 68px 0;
+    }
+
+    section.alt {
+      background: var(--background);
+    }
+
+    h2 {
+      color: var(--navy);
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      line-height: 1.15;
+      margin-top: 0;
+      margin-bottom: 18px;
+    }
+
+    .intro {
+      max-width: 800px;
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 35px;
+    }
+
+    .contrast {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .contrast-box {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 28px;
+      background: var(--white);
+    }
+
+    .contrast-box h3 {
+      margin-top: 0;
+      color: var(--navy);
+    }
+
+    .token-definition {
+      margin: 38px 0;
+      padding: 25px 30px;
+      background: var(--green-light);
+      border-left: 5px solid var(--green);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .step,
+    .question {
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 25px;
+      background: var(--white);
+    }
+
+    .step-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--green);
+      color: var(--white);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .step h3,
+    .question h3 {
+      margin: 5px 0 10px;
+      color: var(--navy);
+    }
+
+    .questions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .pathway {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin-top: 35px;
+    }
+
+    .path-stage {
+      position: relative;
+      background: var(--blue-light);
+      padding: 25px 22px;
+      border-right: 4px solid var(--white);
+      min-height: 175px;
+    }
+
+    .path-stage:last-child {
+      border-right: 0;
+    }
+
+    .path-stage h3 {
+      color: var(--navy);
+      margin-top: 0;
+    }
+
+    .collaborate {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .collaborate h2 {
+      color: var(--white);
+    }
+
+    .collaborate p {
+      max-width: 780px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.1rem;
+      color: #e6eef5;
+    }
+
+    footer {
+      background: var(--navy-dark);
+      color: #cbd5e1;
+      padding: 30px 0;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    footer strong {
+      color: var(--white);
+    }
+
+    @media (max-width: 800px) {
+      .contrast,
+      .steps,
+      .questions,
+      .pathway {
+        grid-template-columns: 1fr;
+      }
+
+      .path-stage {
+        border-right: 0;
+        border-bottom: 4px solid var(--white);
+        min-height: auto;
+      }
+
+      nav .links {
+        display: none;
+      }
+
+      .hero {
+        padding: 58px 0 62px;
+      }
+
+      section {
+        padding: 50px 0;
+      }
+    }
+  </style>
 </head>
+
 <body>
-  <h1>M-Tokens</h1>
-  <p>Tradable Fuel Permits for light-fleet mobility.</p>
-  <p>Research initiative website coming shortly.</p>
+
+<header>
+  <div class="container">
+    <nav>
+      <div class="brand">M-TOKENS</div>
+      <div class="links">
+        <a href="#idea">The idea</a>
+        <a href="#architecture">How it works</a>
+        <a href="#research">Research questions</a>
+        <a href="#programme">Research pathway</a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <div class="container hero-content">
+      <div class="eyebrow">A research initiative for clean mobility</div>
+
+      <h1>Does clean mobility have an untested policy instrument?</h1>
+
+      <p class="hero-lead">
+        Tradable Fuel Permits for light-fleet mobility may finally be testable.
+      </p>
+
+      <p class="hero-summary">
+        M-Tokens are a proposed digital architecture for testing whether a
+        declining, tradable limit on fossil-fuel purchasing could accelerate
+        clean mobility while assigning the value of scarcity to people.
+      </p>
+
+      <a class="button" href="#architecture">Explore the idea</a>
+    </div>
+  </section>
+
+
+  <section id="idea">
+    <div class="container">
+      <h2>Why consider a downstream quantity instrument?</h2>
+
+      <p class="intro">
+        Emissions trading and carbon pricing put an upstream price on emissions.
+        But the price signal transmitted into petrol and diesel prices may be
+        too weak to strongly influence millions of individual mobility choices.
+        Tradable Fuel Permits approach the problem differently.
+      </p>
+
+      <div class="contrast">
+        <div class="contrast-box">
+          <h3>Upstream emissions trading</h3>
+          <p>
+            Sets a carbon price and relies on fuel prices, technology,
+            regulation and other responses to produce the required reduction
+            in light-fleet fossil-fuel use.
+          </p>
+        </div>
+
+        <div class="contrast-box">
+          <h3>Downstream Tradable Fuel Permits</h3>
+          <p>
+            Set a declining quantity of fossil fuel that can be purchased for
+            light-fleet use and allow supply and demand to discover the
+            user-level scarcity price.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="architecture" class="alt">
+    <div class="container">
+      <h2>A testable architecture: M-Tokens</h2>
+
+      <p class="intro">
+        The proposal turns Tradable Fuel Permits into a digital system that
+        could be modelled, prototyped and experimentally tested before anyone
+        contemplated real-world policy adoption.
+      </p>
+
+      <div class="token-definition">
+        1 M-Token = the right to purchase the quantity of fossil fuel for
+        light-fleet use whose combustion emits 1 kg CO₂-e.
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <div class="step-number">1</div>
+          <h3>Set the quantity</h3>
+          <p>
+            A national quarterly M-Token quantity represents the permitted
+            fossil-fuel purchases for light-fleet mobility.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">2</div>
+          <h3>Allocate to people</h3>
+          <p>
+            The entire quarterly quantity is allocated free to qualifying
+            people, with equitable adjustments for differing mobility needs
+            and constraints.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">3</div>
+          <h3>Trade</h3>
+          <p>
+            People can save, gift, sell or buy M-Tokens. Licensed market-makers
+            provide a transparent market and stand ready to buy and sell.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">4</div>
+          <h3>Organisations buy</h3>
+          <p>
+            Organisations receive no free allocation. They obtain the
+            M-Tokens they need through the market.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">5</div>
+          <h3>Use money + M-Tokens</h3>
+          <p>
+            Purchasing petrol or diesel for light-fleet use requires both
+            money and the corresponding quantity of M-Tokens.
+          </p>
+        </div>
+
+        <div class="step">
+          <div class="step-number">6</div>
+          <h3>Decline predictably</h3>
+          <p>
+            The total M-Token quantity declines on a known pathway, progressively
+            reducing the amount of fossil fuel that the light fleet can purchase.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="research">
+    <div class="container">
+      <h2>The important questions are empirical</h2>
+
+      <p class="intro">
+        The purpose of the M-Tokens initiative is not to assume that Tradable
+        Fuel Permits would work. It is to determine whether the idea can now be
+        tested rigorously enough to justify — or rule out — a real-world pilot.
+      </p>
+
+      <div class="questions">
+
+        <div class="question">
+          <h3>Mobility choices</h3>
+          <p>
+            Would a visible, tradable quantity constraint change people's trip,
+            mode, vehicle and energy-source choices — and by how much?
+          </p>
+        </div>
+
+        <div class="question">
+          <h3>Equity</h3>
+          <p>
+            Who would gain, who would pay, and can allocation rules protect
+            people with constrained mobility options?
+          </p>
+        </div>
+
+        <div class="question">
+          <h3>Markets</h3>
+          <p>
+            How would prices, trading, liquidity and banking respond as the
+            available quantity declines?
+          </p>
+        </div>
+
+        <div class="question">
+          <h3>Acceptability</h3>
+          <p>
+            Would free allocation affect public acceptance of a binding
+            fossil-fuel purchase constraint?
+          </p>
+        </div>
+
+        <div class="question">
+          <h3>Implementation</h3>
+          <p>
+            Could digital identity, payments and fuel-retail systems make
+            participation nearly frictionless while minimising fraud?
+          </p>
+        </div>
+
+        <div class="question">
+          <h3>Policy interaction</h3>
+          <p>
+            How would the instrument coexist with emissions trading, fuel
+            taxes, road pricing and electrification policy?
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section id="programme" class="alt">
+    <div class="container">
+      <h2>From idea to evidence</h2>
+
+      <p class="intro">
+        A policy pilot should be the end of an evidence pathway, not the
+        beginning. Each stage should proceed only if the preceding evidence
+        justifies it.
+      </p>
+
+      <div class="pathway">
+
+        <div class="path-stage">
+          <h3>1. Model & experiment</h3>
+          <p>
+            Distributional and market modelling, choice experiments and
+            simulated M-Token markets.
+          </p>
+        </div>
+
+        <div class="path-stage">
+          <h3>2. Prototype</h3>
+          <p>
+            Build and test the digital wallet, trading and fuel-purchase
+            architecture.
+          </p>
+        </div>
+
+        <div class="path-stage">
+          <h3>3. Field trial</h3>
+          <p>
+            Test real-world mobility choices and system operation at limited
+            scale.
+          </p>
+        </div>
+
+        <div class="path-stage">
+          <h3>4. Policy pilot</h3>
+          <p>
+            Consider a real-world policy pilot only if the preceding evidence
+            supports it.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <section class="collaborate">
+    <div class="container">
+      <h2>Want to test it with me?</h2>
+
+      <p>
+        I am looking for researchers, policymakers and research funders
+        interested in defining the evidence needed to justify — or rule out —
+        a real-world pilot of Tradable Fuel Permits for light-fleet mobility.
+      </p>
+
+      <p>
+        Research interests include mobility choices, equity, economics and
+        market design, public policy and governance, digital systems,
+        experimental design and research funding.
+      </p>
+    </div>
+  </section>
+
+</main>
+
+
+<footer>
+  <div class="container">
+    <strong>Paul Minett</strong><br>
+    Trip Convergence Ltd · New Zealand<br>
+    M-Tokens research initiative
+  </div>
+</footer>
+
 </body>
 </html>
