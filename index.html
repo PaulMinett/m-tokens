@@ -246,7 +246,90 @@
       font-size: 1.1rem;
       color: #e6eef5;
     }
+.interest-form {
+  max-width: 760px;
+  margin: 38px auto 0;
+  padding: 32px;
+  background: var(--white);
+  color: var(--text);
+  border-radius: 8px;
+  text-align: left;
+}
 
+.interest-form label,
+.interest-form legend {
+  font-weight: 700;
+}
+
+.interest-form > label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 6px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-row label {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.interest-form input[type="text"],
+.interest-form input[type="email"],
+.interest-form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  font: inherit;
+}
+
+.interest-form fieldset {
+  margin: 25px 0 5px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+}
+
+.interest-form fieldset label {
+  display: block;
+  margin: 9px 0;
+  font-weight: 400;
+}
+
+.interest-form input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+.interest-form button {
+  margin-top: 24px;
+  padding: 13px 22px;
+  border: 0;
+  border-radius: 5px;
+  background: var(--green);
+  color: var(--white);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.interest-form button:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .interest-form {
+    padding: 22px;
+  }
+}
     footer {
       background: var(--navy-dark);
       color: #cbd5e1;
@@ -552,23 +635,90 @@
   </section>
 
 
-  <section class="collaborate">
-    <div class="container">
-      <h2>Want to test it with me?</h2>
+ <section class="collaborate">
+  <div class="container">
+    <h2>Want to test it with me?</h2>
 
-      <p>
-        I am looking for researchers, policymakers and research funders
-        interested in defining the evidence needed to justify — or rule out —
-        a real-world pilot of Tradable Fuel Permits for light-fleet mobility.
-      </p>
+    <p>
+      I am looking for researchers, policymakers and research funders
+      interested in defining the evidence needed to justify — or rule out —
+      a real-world pilot of Tradable Fuel Permits for light-fleet mobility.
+    </p>
 
-      <p>
-        Research interests include mobility choices, equity, economics and
-        market design, public policy and governance, digital systems,
-        experimental design and research funding.
-      </p>
-    </div>
-  </section>
+    <form action="https://formspree.io/f/xnpqzvyg" method="POST" class="interest-form">
+
+      <div class="form-row">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+
+        <div>
+          <label for="organisation">Organisation</label>
+          <input type="text" id="organisation" name="organisation">
+        </div>
+      </div>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="email" required>
+
+      <fieldset>
+        <legend>I’m interested in:</legend>
+
+        <label>
+          <input type="checkbox" name="interest" value="Research collaboration">
+          Research collaboration
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Mobility behaviour and choice">
+          Mobility behaviour and choice
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Equity and distributional research">
+          Equity and distributional research
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Economics and market design">
+          Economics and market design
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Policy and governance">
+          Policy and governance
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Digital systems and prototyping">
+          Digital systems and prototyping
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Field trials and experimental design">
+          Field trials and experimental design
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Research funding">
+          Research funding
+        </label>
+
+        <label>
+          <input type="checkbox" name="interest" value="Keep me informed">
+          Keep me informed
+        </label>
+      </fieldset>
+
+      <label for="message">Comments or message</label>
+      <textarea id="message" name="message" rows="5"></textarea>
+
+      <button type="submit">Register interest</button>
+
+    </form>
+  </div>
+</section>
 
 </main>
 
