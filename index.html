@@ -414,6 +414,30 @@
   }
 } 
     
+.back-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 1000;
+  padding: 0.65rem 0.9rem;
+  border-radius: 999px;
+  background: var(--navy);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.back-to-top:visited {
+  color: #ffffff;
+}
+
+.back-to-top:hover,
+.back-to-top:focus {
+  text-decoration: underline;
+}
+    
     .questions-heading {
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
@@ -860,5 +884,7 @@
   </div>
 </footer>
 
+  <a class="back-to-top" href="#top" aria-label="Back to top">↑ Back to top</a>
+  
 </body>
 </html>
