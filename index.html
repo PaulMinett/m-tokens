@@ -368,7 +368,46 @@
         padding: 50px 0;
       }
     }
-  .questions-heading {
+
+   .mobile-links {
+  display: none;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.button-secondary {
+  background: transparent;
+  border: 2px solid currentColor;
+}
+
+@media (max-width: 800px) {
+  .mobile-links {
+    display: flex;
+    gap: 0.9rem;
+    overflow-x: auto;
+    white-space: nowrap;
+    padding: 0.75rem 0;
+    font-size: 0.88rem;
+    font-weight: 600;
+  }
+
+  .mobile-links a {
+    flex: 0 0 auto;
+    text-decoration: none;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+} 
+    
+    .questions-heading {
   margin-top: 2.5rem;
   margin-bottom: 1.25rem;
   font-size: 1.35rem;
@@ -380,42 +419,54 @@
 
 <body>
 
-<header>
+<header id="top">
   <div class="container">
     <nav>
       <div class="brand">M-TOKENS</div>
       <div class="links">
-        <a href="#idea">The idea</a>
+        <a href="#idea">Why</a>
         <a href="#architecture">How it works</a>
         <a href="#research">Research questions</a>
         <a href="#programme">Research pathway</a>
+        <a href="#collaborate">Collaborate</a>
       </div>
     </nav>
+
+    <div class="mobile-links">
+      <a href="#idea">Why</a>
+      <a href="#architecture">How it works</a>
+      <a href="#research">Questions</a>
+      <a href="#programme">Pathway</a>
+      <a href="#collaborate">Collaborate</a>
+    </div>
   </div>
 </header>
 
 <main>
 
-  <section class="hero">
-    <div class="container hero-content">
-      <div class="eyebrow">A research initiative for clean mobility</div>
+ <section class="hero">
+  <div class="container hero-content">
+    <div class="eyebrow">A research initiative for clean mobility</div>
 
-      <h1>Does clean mobility have an untested policy instrument?</h1>
+    <h1>Does clean mobility have an untested policy instrument?</h1>
 
-      <p class="hero-lead">
-        Tradable Fuel Permits for light-fleet mobility may finally be testable.
-      </p>
+    <p class="hero-lead">
+      Tradable Fuel Permits for light-fleet mobility may finally be testable.
+    </p>
 
-      <p class="hero-summary">
-  M-Tokens are a proposed digital form of Tradable Fuel Permits. They would
-  guarantee a declining pathway for light-fleet fossil-fuel use by
-  progressively limiting the amount of fuel that can be purchased, while
-  allowing people and organisations to decide how they respond.
-</p>
+    <p class="hero-summary">
+      M-Tokens are a proposed digital form of Tradable Fuel Permits. They would
+      guarantee a declining pathway for light-fleet fossil-fuel use by
+      progressively limiting the amount of fuel that can be purchased, while
+      allowing people and organisations to decide how they respond.
+    </p>
 
-      <a class="button" href="#idea">Explore the idea</a>
+    <div class="hero-actions">
+      <a class="button" href="#idea">Why M-Tokens?</a>
+      <a class="button button-secondary" href="#collaborate">Express interest</a>
     </div>
-  </section>
+  </div>
+</section>
 
 
   <section id="idea">
@@ -706,7 +757,7 @@
   </section>
 
 
- <section class="collaborate">
+<section class="collaborate" id="collaborate">
   <div class="container">
     <h2>Want to test it with me?</h2>
 
