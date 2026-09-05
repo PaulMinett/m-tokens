@@ -396,10 +396,17 @@
     font-weight: 600;
   }
 
-  .mobile-links a {
-    flex: 0 0 auto;
-    text-decoration: none;
-  }
+ .mobile-links a,
+.mobile-links a:visited {
+  flex: 0 0 auto;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.mobile-links a:hover,
+.mobile-links a:focus {
+  text-decoration: underline;
+}
 
   .hero-actions {
     flex-direction: column;
