@@ -918,14 +918,28 @@
     formElement: "#interest-form",
     formId: "xnpqzvyg",
     onSuccess: function () {
-      document.getElementById("form-success").hidden = false;
-      document.getElementById("form-error").hidden = true;
-      document.getElementById("interest-form").reset();
-    },
-    onError: function () {
-      document.getElementById("form-error").hidden = false;
-    }
+  const success = document.getElementById("form-success");
+
+  success.hidden = false;
+  document.getElementById("form-error").hidden = true;
+  document.getElementById("interest-form").reset();
+
+  success.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
   });
+},
+    onError: function () {
+  const error = document.getElementById("form-error");
+
+  error.hidden = false;
+  document.getElementById("form-success").hidden = true;
+
+  error.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
 </script>
 
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
