@@ -805,7 +805,7 @@
       generate an email to me with your responses.
     </p>
 
-    <form action="https://formspree.io/f/xnpqzvyg" method="POST" class="interest-form">
+   <form id="interest-form" class="interest-form">
 
       <div class="form-row">
         <div>
@@ -891,6 +891,42 @@
   </div>
 </footer>
 
+<div id="form-success" hidden>
+  <p>
+    <strong>Thank you. Your interest has been registered.</strong><br>
+    I look forward to continuing the conversation.
+  </p>
+</div>
+
+<div id="form-error" hidden>
+  <p>
+    Sorry, there was a problem submitting the form. Please try again.
+  </p>
+</div>
+
+<script>
+  window.formspree =
+    window.formspree ||
+    function () {
+      (formspree.q = formspree.q || []).push(arguments);
+    };
+
+  formspree("initForm", {
+    formElement: "#interest-form",
+    formId: "xnpqzvyg",
+    onSuccess: function () {
+      document.getElementById("form-success").hidden = false;
+      document.getElementById("form-error").hidden = true;
+      document.getElementById("interest-form").reset();
+    },
+    onError: function () {
+      document.getElementById("form-error").hidden = false;
+    }
+  });
+</script>
+
+<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
+  
   <a class="back-to-top" href="#top" aria-label="Back to top">↑ Back to top</a>
   
 </body>
