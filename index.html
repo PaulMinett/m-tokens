@@ -874,8 +874,7 @@
       <label for="message">Comments or message</label>
       <textarea id="message" name="message" rows="5"></textarea>
 
-      <button type="submit">Register interest</button>
-
+     <button type="submit" data-fs-submit-btn>Register interest</button>
     </form>
 
     <div id="form-success" hidden>
@@ -914,32 +913,47 @@
       (formspree.q = formspree.q || []).push(arguments);
     };
 
+  function showFormError() {
+    const error = document.getElementById("form-error");
+
+    error.hidden = false;
+    document.getElementById("form-success").hidden = true;
+
+    requestAnimationFrame(function () {
+      error.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  }
+
   formspree("initForm", {
     formElement: "#interest-form",
     formId: "xnpqzvyg",
+
     onSuccess: function () {
-  const success = document.getElementById("form-success");
+      const success = document.getElementById("form-success");
 
-  success.hidden = false;
-  document.getElementById("form-error").hidden = true;
-  document.getElementById("interest-form").reset();
+      success.hidden = false;
+      document.getElementById("form-error").hidden = true;
+      document.getElementById("interest-form").reset();
 
-  success.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
-  });
-},
+      requestAnimationFrame(function () {
+        success.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+      });
+    },
+
     onError: function () {
-  const error = document.getElementById("form-error");
+      showFormError();
+    },
 
-  error.hidden = false;
-  document.getElementById("form-success").hidden = true;
-
-  error.scrollIntoView({
-    behavior: "smooth",
-    block: "center"
+    onFailure: function () {
+      showFormError();
+    }
   });
-}
 </script>
 
 <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
