@@ -55,11 +55,22 @@
       gap: 20px;
     }
 
-    .brand {
-      font-size: 1.35rem;
-      font-weight: 700;
-      letter-spacing: 0.02em;
-    }
+   .brand {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.brand img {
+  width: 36px;
+  height: 36px;
+  display: block;
+}
 
     nav a {
       color: var(--white);
@@ -499,7 +510,10 @@
 <header id="top">
   <div class="container">
     <nav>
-      <div class="brand">M-TOKENS</div>
+      <a class="brand" href="#top">
+  <img src="M-Token_mark.svg" alt="">
+  <span>M-TOKENS</span>
+</a>
       <div class="links">
         <a href="#idea">Why</a>
         <a href="#architecture">How it works</a>
